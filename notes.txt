@@ -1,0 +1,28 @@
+// TASK: Initialize firebase project
+Step 1: Create new project at firebase.com
+Step 2: If using firestore, create new Cloud Firestore database on step 1 project - set in production mode;
+Step 3: create project folder on local system
+step 5: run >firebase init 
+  5a. Select services; Firestore, Functions, Hosting
+  5b. Select Default for rules and indexes files, use Javascript for functions language.
+  5c. If ESLint, select eslint 
+  5d. Select Project name (if already created in step 1)
+  5e. Install required npm modules
+  5f. Select default deploy folder (public) and select as multipage app.
+
+Step 6: Import firebase script url links in index.html - include scripts for sub-apps.
+
+// TASK: run firebase dev server
+> firebase serve
+
+Learning Points
+Firebase Cloud Functions can be triggered on different events (called triggers)
+  Background Triggers
+  - Database events
+  - Auth events
+  - Storage Events 
+  - Analytics Events
+
+  HTTP Triggers 
+  - endpoint request
+  - callable
