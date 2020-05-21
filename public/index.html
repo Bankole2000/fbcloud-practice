@@ -64,6 +64,7 @@
 
     <!-- Content (kind of a d'uh) -->
     <section class="content" id="app">
+      <input type="hidden" name="user-id">
       <h1>Tutorial Requests</h1>
       <ul class="request-list">
         <li v-for="request in requests" :key='request.id'>
@@ -75,16 +76,17 @@
             class='mdi mdi-arrow-up-bold-outline upvote'></i>
           </div>
         </li>
-        <li>
-          <span class="text">Laravel 6 Tutorial</span>
-          <div>
-            <span class="votes">125</span>
-            <i class="mdi mdi-arrow-up-bold-outline upvote"></i>
-          </div>
-        </li>
       </ul>
-      <button class="call">Say Hello</button>
+      <button class="call">Say Hi 🙋‍♀️</button>
+      <a href="mailto:techybanky@gmail.com">
+        <button>Email Me 💌</button>
+      </a>
+      
     </section>
+
+    <footer>
+      <p class="footer-text"><i class="mdi mdi-firebase" style="color: orange;"></i>Firebase <a href="https://firebase.google.com/docs/functions" target="_blank">☁️Cloud functions⚡</a> practice</p>
+      <p>&copy;<span class="year"></span> <a href="https://bankole2000.github.io/portfolio" target="_blank">Bankole Esan</a></p></footer>
 
      <!-- update the version number as needed -->
      <script src="/__/firebase/7.14.4/firebase-app.js"></script>
@@ -100,5 +102,8 @@
      <script src="assets/js/auth.js"></script>
      <script src="assets/js/requests.js"></script>
      <script src="assets/js/app.js"></script>
+     <script>
+       document.querySelector('.year').textContent = new Date().getFullYear();
+     </script>
   </body>
 </html>

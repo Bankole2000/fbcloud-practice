@@ -7,6 +7,7 @@ const registerForm = document.querySelector('.register');
 const loginForm = document.querySelector('.login');
 const signOut = document.querySelector('.sign-out');
 const userProfile = document.querySelector('.user-profile');
+const userIdInput = document.querySelector('input[name="user-id"]');
 
 // toggle auth modals
 authSwitchLinks.forEach(link => {
@@ -26,6 +27,8 @@ registerForm.addEventListener('submit', (e) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((cred) => {
       console.log(cred, cred.user);
+      userIdInput.value = cred.user.uid;
+
       registerForm.querySelector('.error').innerHTML = '';
       registerForm.reset();
       M.toast({html: '<i class="mdi mdi-check-circle success"></i> Registration Successful'});
@@ -51,7 +54,9 @@ loginForm.addEventListener('submit', (e) => {
 
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((user) => {
-      console.log(`Logged in ${user}`);
+      console.log(`Logged in ${user.uid}`);
+      
+
       loginForm.querySelector('.error').innerHTML = '';
       M.toast({html: '<i class="mdi mdi-check-circle success"></i> Login Successful'});
       loginForm.reset();
@@ -74,12 +79,15 @@ firebase.auth().onAuthStateChanged((user) => {
     userProfile.querySelector('img').setAttribute('src', user.image);
     userProfile.querySelector('.user-email').innerHTML = user.email;
     userProfile.querySelector('.user-email').setAttribute('data-id', user.uid);
+    userIdInput.value = user.uid
+    app.getUserUpvotedOn(user.uid);
   } else {
     authWrapper.classList.add('open');
     authModals[0].classList.add('active');
     userProfile.querySelector('img').setAttribute('src', '');
     userProfile.querySelector('.user-email').innerHTML = '';
     userProfile.querySelector('.user-email').setAttribute('data-id', '');
+    userIdInput.value = "";
   }
 })
 

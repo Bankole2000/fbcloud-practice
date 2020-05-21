@@ -23,8 +23,8 @@ exports.toThePortfolio = functions.https.onRequest((request, response) => {
 
 // Http callable 1 Function 
 exports.sayHello = functions.https.onCall((data, context) => {
-  const name = data.name;
-  return `Hello, ${name}`;
+  const email = data.email;
+  return `Hello, ${email}`;
 })
 
 // Auth Background Trigger (New User Signup)
@@ -96,7 +96,7 @@ exports.upvote = functions.https.onCall(async (data, context) => {
 })
 
 // Firestore Trigger (tracking user activity for example)
-exports.logActivities = functions.firestore.document('/requests/{id}')
+exports.logActivities = functions.firestore.document('/{collection}/{id}')
   .onCreate((snap, context) => {
     console.log(snap.data());
     const collection = context.params.collection;

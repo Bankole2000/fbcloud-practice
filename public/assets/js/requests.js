@@ -21,11 +21,27 @@ var app = new Vue({
         });
     },
     getUserUpvotedOn(userId){
-      const userRef = firebase.firestore().collection('users').doc(userId);
-      userRef.get()
+      console.log(userId);
+      if (userId) {
+        const userRef = firebase.firestore().collection('users').doc(userId);
+        userRef.get()
         .then(doc => {
-          this.userUpvotedOn = [...doc.data().upvotedOn];
+          if(doc.data()) {
+            console.log(doc.data());
+            this.userUpvotedOn = [...doc.data().upvotedOn];
+          } else {
+            this.userUpvotedOn = []
+          }
         })
+      }       
+    }, 
+    getUserId() {
+      setTimeout(() => {
+        const UserID = userIdInput.value;
+        UserID ? this.userId = UserID : '';
+        console.log(this.userId);
+        this.userId === UserID ? this.getUserUpvotedOn(UserID): '';
+      }, 2000);
     }
   },
   mounted() {
@@ -40,13 +56,7 @@ var app = new Vue({
         })
       });
       this.requests = requests;
-      setTimeout(() => {
-        const UserID = document.querySelector('.user-email').getAttribute('data-id');
-        this.userId = UserID;
-        console.log(this.userId);
-        this.getUserUpvotedOn(UserID);
-      }, 3000);
-      
+      this.userId === userIdInput.value ? this.getUserUpvotedOn(this.userId) : this.getUserId();
     })
   }
 })

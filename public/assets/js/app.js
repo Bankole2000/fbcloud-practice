@@ -18,9 +18,11 @@ const btn = document.querySelector('.call');
 btn.addEventListener('click', (e) => {
   e.preventDefault();
   const sayHello = firebase.functions().httpsCallable('sayHello');
-  sayHello({name: 'Banky'})
+  email = document.querySelector('.user-email').textContent;
+  sayHello({email})
     .then((result) => {
       console.log(result.data);
+      M.toast({ html: `${result.data} 👋`})
     })
 })
 
