@@ -70,6 +70,7 @@ header a:hover {
 .content {
   max-width: 800px;
   margin: 40px auto;
+  margin-bottom: 80px;
 }
 
 /* request list styles */
@@ -216,7 +217,7 @@ footer a:hover {
   .modal {
     width: 250px;
   }
-  .footer-text {
+  /* .footer-text {
     display: none;
-  }
+  } */
 }
