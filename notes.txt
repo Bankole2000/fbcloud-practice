@@ -17,12 +17,23 @@ Step 6: Import firebase script url links in index.html - include scripts for sub
 
 Learning Points
 Firebase Cloud Functions can be triggered on different events (called triggers)
-  Background Triggers
+  Background Triggers - Must return a value/promise
   - Database events
   - Auth events
   - Storage Events 
   - Analytics Events
 
-  HTTP Triggers 
-  - endpoint request
-  - callable
+  HTTP Triggers - Must return value/response object
+  - endpoint request - returns response object
+  - callable - returns a value
+
+// SECTION: How to create and invoke a cloud function 
+Step 1: create function in FILE: functions/index.js by writing function code, save file 
+Step 2: deploy function using the task below
+// TASK: Deploy firebase functions only 
+> firebase deploy --only functions
+Step 3: Go to functions section of firebase project details to see deployed function and function uri (endpoint);
+Step 4: You can test funtion in web browser by using enpoint. (for enpoint requests)
+Step 5: You can check request logs in firebase console > function > logs, and you can log to the console log just by using regular console.log. 
+
+Notes; https.onCall returns return object/value, while https.onRequest returns response object 

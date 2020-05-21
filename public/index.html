@@ -4,10 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="assets/css/mdi5.min.css">
+    <link rel="stylesheet" href="assets/css/toast.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <title>Tutorial Requests</title>
   </head>
   <body>
+
+    <!-- Auth modals -->
+    <div class="auth open">
+      <div class="modal">
+        <h2>Login</h2>
+        <form action="" class="login">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>login</button>
+          <p class="error"></p>
+        </form>
+        <div>No Account? <a href="" class="switch">Register Instead</a></div>
+      </div>
+      <div class="modal">
+        <h2>Register</h2>
+        <form action="" class="register">
+          <input type="text" name="email" placeholder="Email">
+          <input type="password" name="password" placeholder="Password">
+          <button>Register</button>
+          <p class="error"></p>
+        </form>
+        <div>Got an Account? 
+          <a href="" class="switch">Login Instead</a>
+        </div>
+      </div>
+    </div>
 
     <!-- New Request modal -->
     <div class="new-request">
@@ -23,6 +50,12 @@
 
     <!-- Nav bar -->
     <header>
+      <div class="user-profile">
+        <img src="" alt="Profile Image">
+        <a class="user-email" id="">
+         your@email.com
+        </a>
+        </div>
       <nav>
         <a class="add-request">add request</a>
         <a class="sign-out">sign out</a>
@@ -30,9 +63,18 @@
     </header>
 
     <!-- Content (kind of a d'uh) -->
-    <section class="content">
+    <section class="content" id="app">
       <h1>Tutorial Requests</h1>
       <ul class="request-list">
+        <li v-for="request in requests" :key='request.id'>
+          <span class="text">{{ request.text }}</span>
+          <div>
+            <span class="votes">{{ request.upvotes }}</span>
+            <i @click.prevent='upvoteRequest(request.id)' 
+            :class="userUpvotedOn.includes(request.id) ? 'upvoted': ''" 
+            class='mdi mdi-arrow-up-bold-outline upvote'></i>
+          </div>
+        </li>
         <li>
           <span class="text">Laravel 6 Tutorial</span>
           <div>
@@ -41,9 +83,8 @@
           </div>
         </li>
       </ul>
+      <button class="call">Say Hello</button>
     </section>
-
-
 
      <!-- update the version number as needed -->
      <script src="/__/firebase/7.14.4/firebase-app.js"></script>
@@ -53,8 +94,11 @@
      <script src="/__/firebase/7.14.4/firebase-functions.js"></script>
      <!-- initialize the SDK after all desired features are loaded -->
      <script src="/__/firebase/init.js"></script>
-
+     <script src="assets/js/materialize.min.js"></script>
+     <script src="assets/js/vue.js"></script>
      <script src="assets/js/md5.js"></script>
+     <script src="assets/js/auth.js"></script>
+     <script src="assets/js/requests.js"></script>
      <script src="assets/js/app.js"></script>
   </body>
 </html>

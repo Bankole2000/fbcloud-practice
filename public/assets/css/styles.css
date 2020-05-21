@@ -17,12 +17,32 @@ ul {
 
 /* header styles */
 header {
+  display: flex;
   width: 100%;
-  padding: 30px 10%;
+  padding: 25px 10%;
   text-align: right;
+  align-items: center;
   background: #fff;
   box-sizing: border-box;
   box-shadow: 0px 0px 6px rgba(0,0,0,0.1);
+}
+
+header .user-profile {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: left;
+}
+
+header .user-profile img{
+  border-radius: 50%;
+  border-color: #ffe100;
+  width: 3rem;
+}
+
+header nav {
+  flex: 2;
 }
 
 header a {
@@ -113,4 +133,57 @@ button {
   font-weight: bold;
   font-family: inherit;
   cursor: pointer;
+}
+
+/* auth styles */
+.auth {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #fafafa;
+  display: none;
+  z-index: 1;
+}
+
+.auth.open{
+  display: block;
+}
+
+.auth a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.auth .modal {
+  display: none;
+}
+
+.auth .modal.active {
+  display: block;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: #ffe100;
+}
+.upvoted {
+  background: #ffe100;
+}
+
+@media screen and (max-width: 500px) {
+  header {
+    padding: 20px 3%;
+  }
+  header nav {
+    flex: 5;
+  }
+  .user-email {
+    display: none;  
+  }
+  .modal {
+    width: 250px;
+  }
 }
